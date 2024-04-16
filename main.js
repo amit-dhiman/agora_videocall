@@ -60,6 +60,7 @@ let handleUserLeft = async (user) => {
 
 let leaveAndRemoveLocalStream = async () => {
     for(let i = 0; localTracks.length > i; i++){
+        console.log('--------leave localTracks[i]------',localTracks[i]);
         localTracks[i].stop()
         localTracks[i].close()
     }
