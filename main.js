@@ -71,7 +71,21 @@ const leaveAndRemoveLocalStream = async()=>{
     document.getElementById('video-streams').style.display= '';
 }
 
+const toggleMic = async (e) =>{
+    console.log('---------localTracks[0]-------',localTracks[0]);
+    if(localTracks[0].muted){
+        await localTracks[0].setMuted(false)
+        e.target.innerText= 'Mic on'
+        e.target.style.backgroundColor= 'cadetblue'
+    }else{
+        await localTracks[0].setMuted(true)
+        e.target.innerText= "Mic off"
+        e.target.style.backgroundColor= '#EE4B2B'
+    }
+}
+
 
 
 document.getElementById('join-btn').addEventListener('click', joinStream);
 document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream);
+document.getElementById('mic-btn').addEventListener('click', toggleMic);
