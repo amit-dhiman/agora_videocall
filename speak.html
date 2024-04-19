@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech with Waves</title>
+    <style>
+        .text-container {
+            margin: 20px;
+        }
+        .wave-container {
+            position: relative;
+            margin-top: 10px;
+            width: 100%;
+            height: 50px;
+            background-color: #f0f0f0;
+        }
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #007bff;
+            animation: waveAnimation 1s infinite linear alternate;
+        }
+        @keyframes waveAnimation {
+            0% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1); }
+            100% { transform: scaleY(0.5); }
+        }
+    </style>
+</head>
+<body>
+    <div class="text-container">
+        <input type="text" id="textInput" placeholder="Enter text to speak">
+        <button onclick="speakText()">Speak</button>
+    </div>
+    <div id="waveContainer" class="wave-container"></div>
+
+    <script>
+        function speakText() {
+            var textInput = document.getElementById('textInput').value;
+            var speech = new SpeechSynthesisUtterance();
+            speech.text = textInput;
+            speech.rate = 0.8; // Adjust the rate to slow down speech (0.1 to 10.0 range)
+            speechSynthesis.speak(speech);
+
+            var waveContainer = document.getElementById('waveContainer');
+            var wave = document.createElement('div');
+            wave.classList.add('wave');
+            waveContainer.innerHTML = ''; // Clear previous waves
+            waveContainer.appendChild(wave);
+        }
+
+    </script>
+</body>
+</html>
